@@ -34,25 +34,32 @@ int max(int numbers[], int amount) {
 }
 
 int mostFrequent(int numbers[], int amount) {
-    int maxFreq{0};
-    int mostFreq{-1};
+    /* Outer loop picks each element in the list and inner loop
+     * scans the entire list to count the picked up element's 
+     * frequency
+     */
+
+    int maxFreq{0};  // to track the maximum frequency
+    int mostFreq{-1};  // to track the most frequent element
     for (int i = 0; i < amount; i++) {
-        int countFreq = 1;
+        int countFreq = 1;  // to track the frequency count of each element
         for (int j = 0; j < amount; j++) {
+            // If the same number repeats -> countFreq increases by 1
             if (numbers[j] == numbers[i]) {
                 countFreq += 1;
             }
         }
+        // If found element with a frequency greater than maxFreq
+        // -> update variables
         if (maxFreq < countFreq) {
             maxFreq = countFreq;
             mostFreq = numbers[i];
-        }
+        } 
         else if (maxFreq == countFreq) {
             mostFreq = std::min(mostFreq, numbers[i]);
         }
-    return mostFreq;
     }
-    
+    return mostFreq;
 }
 
 int main() {
